@@ -5,6 +5,7 @@ import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 
 import java.io.IOException;
+import java.util.Map;
 import java.util.Properties;
 
 public class TwitterObjectBuilder {
@@ -12,16 +13,19 @@ public class TwitterObjectBuilder {
     private static Twitter instance = null;
 
     private TwitterObjectBuilder() throws IOException {
-        PropertyReader reader = new PropertyReader();
-        Properties prop = reader.getPropValues();
+//        PropertyReader reader = new PropertyReader();
+//        Properties prop = reader.getPropValues();
+
+        ConfigurationReader reader = new ConfigurationReader();
+        Map<String,Object> data  = reader.getConfiguration();
 
         ConfigurationBuilder cb = new ConfigurationBuilder();
 
         cb.setDebugEnabled(true)
-                .setOAuthConsumerKey(prop.getProperty("consumerKey"))
-                .setOAuthConsumerSecret(prop.getProperty("consumerSecret"))
-                .setOAuthAccessToken(prop.getProperty("accessToken"))
-                .setOAuthAccessTokenSecret(prop.getProperty("accessTokenSecret"));
+                .setOAuthConsumerKey(data.get("consumerKey").toString())
+                .setOAuthConsumerSecret(data.get("consumerSecret").toString())
+                .setOAuthAccessToken(data.get("accessToken").toString())
+                .setOAuthAccessTokenSecret(data.get("accessTokenSecret").toString());
 
         TwitterFactory tf = new TwitterFactory(cb.build());
 
