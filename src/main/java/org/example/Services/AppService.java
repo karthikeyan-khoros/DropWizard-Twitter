@@ -1,5 +1,6 @@
 package org.example.Services;
 
+import org.example.Configuration.Log;
 import org.example.Configuration.TwitterObjectBuilder;
 import org.example.Models.Tweet;
 import twitter4j.Paging;
@@ -19,19 +20,17 @@ public class AppService {
         Tweet tweet;
 
         try {
+            Log.getInstance().info("New Status Post :"+message);
+
             Status status = twitter.updateStatus(message);
             tweet = new Tweet(status);
-            System.out.println("Successfully updated the status ----> [" + status.getText() + "].");
+
+            Log.getInstance().info(" Status Posted ----> [" + status.getText() + "].");
         }
 
         catch (TwitterException e)
         {
-            System.out.println("^^^^^^^^^^^^^^^ Operation Failed ^^^^^^^^^^^^^^^\n");
-            if(e.getErrorCode()==-1)
-                System.out.println("Network Connectivity Error");
-            else
-                System.out.println(e.getErrorMessage());
-
+            Log.getInstance().warning(e.getErrorMessage());
             return null;
         }
 
@@ -47,25 +46,25 @@ public class AppService {
         List<Status> statuses;
 
         try {
+            Log.getInstance().info("Homeline Fetched ");
+
             statuses  = twitter.getHomeTimeline(paging);
+
+
         }
 
         catch(TwitterException e)
         {
-            System.out.println("^^^^^^^^^^^^^^^ Operation Failed ^^^^^^^^^^^^^^\n^");
-            if(e.getErrorCode()==-1)
-                System.out.println("Network Connectivity Error");
-            else
-                System.out.println(e.getErrorMessage());
+            Log.getInstance().warning(e.getErrorMessage());
             return null;
         }
 
         count = statuses.size();
         List<Tweet> tweets = new ArrayList<Tweet>();
+
         while(count > 0)
         {
             count--;
-            //System.out.println("Tweet "+count+" ---> "+statuses.get(count).getText());
             tweets.add(new Tweet(statuses.get(count)));
         }
 
@@ -76,22 +75,21 @@ public class AppService {
     {
 
         Twitter twitter = TwitterObjectBuilder.getInstance();
+
         int page=1,count=5;
         Paging paging = new Paging(page,count);
 
         List<Status> statuses;
 
         try {
+            Log.getInstance().info("Filtered Homeline Fetched ");
+
             statuses  = twitter.getHomeTimeline(paging);
         }
 
         catch(TwitterException e)
         {
-            System.out.println("^^^^^^^^^^^^^^^ Operation Failed ^^^^^^^^^^^^^^\n^");
-            if(e.getErrorCode()==-1)
-                System.out.println("Network Connectivity Error");
-            else
-                System.out.println(e.getErrorMessage());
+            Log.getInstance().info(e.getErrorMessage());
             return null;
         }
 

@@ -18,6 +18,7 @@ public class AppController {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response postTweet(Map<String,String> data) throws IOException {
+
         return  Response.ok().entity(appService.postTweet(data.get("tweet"))).build();
     }
 
