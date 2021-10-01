@@ -1,13 +1,11 @@
-package org.example.Controller;
+package org.example.Resources;
 
 import org.example.service.AppService;
-import twitter4j.Status;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
 @Path("twitter")

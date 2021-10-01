@@ -1,6 +1,6 @@
 package org.example.service;
 
-import org.example.Controller.TwitterObjectBuilder;
+import org.example.Configuration.TwitterObjectBuilder;
 import twitter4j.Paging;
 import twitter4j.Status;
 import twitter4j.Twitter;

@@ -1,4 +1,4 @@
-package org.example.Controller;
+package org.example.Configuration;
 
 import com.fasterxml.jackson.dataformat.yaml.snakeyaml.Yaml;
 

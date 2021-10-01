@@ -1,4 +1,4 @@
-package org.example.Controller;
+package org.example.Configuration;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

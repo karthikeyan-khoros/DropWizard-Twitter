@@ -4,7 +4,7 @@ import io.dropwizard.Application;
 import io.dropwizard.Configuration;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
-import org.example.Controller.AppController;
+import org.example.Resources.AppController;
 
 
 public class App extends Application<Configuration> {

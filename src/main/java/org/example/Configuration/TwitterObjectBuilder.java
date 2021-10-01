@@ -1,4 +1,4 @@
-package org.example.Controller;
+package org.example.Configuration;
 
 import twitter4j.Twitter;
 import twitter4j.TwitterFactory;
@@ -6,7 +6,6 @@ import twitter4j.conf.ConfigurationBuilder;
 
 import java.io.IOException;
 import java.util.Map;
-import java.util.Properties;
 
 public class TwitterObjectBuilder {
 
