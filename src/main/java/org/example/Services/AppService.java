@@ -10,6 +10,7 @@ import twitter4j.TwitterException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AppService {
 
@@ -69,6 +70,40 @@ public class AppService {
         }
 
         return tweets;
+    }
 
+    public List<Tweet> filterHomeTimeLine(String word) throws IOException
+    {
+
+        Twitter twitter = TwitterObjectBuilder.getInstance();
+        int page=1,count=5;
+        Paging paging = new Paging(page,count);
+
+        List<Status> statuses;
+
+        try {
+            statuses  = twitter.getHomeTimeline(paging);
+        }
+
+        catch(TwitterException e)
+        {
+            System.out.println("^^^^^^^^^^^^^^^ Operation Failed ^^^^^^^^^^^^^^\n^");
+            if(e.getErrorCode()==-1)
+                System.out.println("Network Connectivity Error");
+            else
+                System.out.println(e.getErrorMessage());
+            return null;
+        }
+
+        statuses = statuses.parallelStream()
+                .filter(t -> t.getText().indexOf(word)>=0)
+                .collect(Collectors.toList());
+
+        List<Tweet> tweets = new ArrayList<Tweet>();;
+
+        for(Status status:statuses)
+            tweets.add(new Tweet(status));
+
+        return tweets;
     }
 }

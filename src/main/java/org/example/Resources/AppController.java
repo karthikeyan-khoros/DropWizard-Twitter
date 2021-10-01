@@ -28,4 +28,11 @@ public class AppController {
         return  Response.ok().entity(appService.getHomeTimeLine()).build();
     }
 
+    @Path("hometimeline/filter/{word}")
+    @GET
+    public Response filterHomeTimeLine(@PathParam(value="word") String word) throws IOException
+    {
+        return  Response.ok().entity(appService.filterHomeTimeLine(word)).build();
+    }
+
 }
