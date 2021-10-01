@@ -1,6 +1,6 @@
 package org.example.Resources;
 
-import org.example.service.AppService;
+import org.example.Services.AppService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

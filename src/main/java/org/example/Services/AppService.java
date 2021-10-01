@@ -1,6 +1,7 @@
-package org.example.service;
+package org.example.Services;
 
 import org.example.Configuration.TwitterObjectBuilder;
+import org.example.Models.Tweet;
 import twitter4j.Paging;
 import twitter4j.Status;
 import twitter4j.Twitter;
@@ -12,11 +13,13 @@ import java.util.List;
 
 public class AppService {
 
-    public String postTweet(String message) throws IOException {
+    public Tweet postTweet(String message) throws IOException {
         Twitter twitter = TwitterObjectBuilder.getInstance();
+        Tweet tweet;
 
         try {
             Status status = twitter.updateStatus(message);
+            tweet = new Tweet(status);
             System.out.println("Successfully updated the status ----> [" + status.getText() + "].");
         }
 
@@ -28,13 +31,13 @@ public class AppService {
             else
                 System.out.println(e.getErrorMessage());
 
-            return "Failure";
+            return null;
         }
 
-        return "Successfully updated the status ----> [" + message + "].";
+        return tweet;
     }
 
-    public List<String> getHomeTimeLine() throws IOException {
+    public List<Tweet> getHomeTimeLine() throws IOException {
         Twitter twitter = TwitterObjectBuilder.getInstance();
 
         int page=1,count=5;
@@ -57,15 +60,15 @@ public class AppService {
         }
 
         count = statuses.size();
-        List<String> str = new ArrayList<String>();
+        List<Tweet> tweets = new ArrayList<Tweet>();
         while(count > 0)
         {
             count--;
-            System.out.println("Tweet "+count+" ---> "+statuses.get(count).getText());
-            str.add(statuses.get(count).getText());
+            //System.out.println("Tweet "+count+" ---> "+statuses.get(count).getText());
+            tweets.add(new Tweet(statuses.get(count)));
         }
 
-        return str;
+        return tweets;
 
     }
 }
