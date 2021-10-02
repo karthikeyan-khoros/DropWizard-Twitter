@@ -15,6 +15,9 @@ import java.util.stream.Collectors;
 
 public class AppService {
 
+    public AppService() {
+    }
+
     public Tweet postTweet(String message) throws IOException {
         Twitter twitter = TwitterObjectBuilder.getInstance();
         Tweet tweet;

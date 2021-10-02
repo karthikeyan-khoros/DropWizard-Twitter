@@ -1,6 +1,7 @@
 package org.example.Resources;
 
 import org.example.Services.AppService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -14,11 +15,18 @@ public class AppController {
 
     AppService appService = new AppService();
 
+    public AppController() {
+    }
+
+    @Autowired
+    public AppController(AppService appService) {
+        this.appService = appService;
+    }
+
     @Path("newtweet")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response postTweet(Map<String,String> data) throws IOException {
-
         return  Response.ok().entity(appService.postTweet(data.get("tweet"))).build();
     }
 
