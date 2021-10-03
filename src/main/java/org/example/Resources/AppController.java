@@ -1,13 +1,17 @@
 package org.example.Resources;
 
+import org.example.Configuration.CacheConfiguration;
+import org.example.Models.Tweet;
 import org.example.Services.AppService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import twitter4j.TwitterException;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 @Path("twitter")
@@ -21,6 +25,8 @@ public class AppController {
 
     public AppController() {
     }
+
+    CacheConfiguration cacheConfiguration = new CacheConfiguration();
 
     @Autowired
     public void setAppService(AppService appService) {
@@ -36,15 +42,15 @@ public class AppController {
 
     @Path("hometimeline")
     @GET
-    public Response getHomeTimeLine() throws IOException
+    public Response getHomeTimeLine() throws Exception
     {
-        return  Response.ok().entity(appService.getHomeTimeLine()).build();
+        List<Tweet> homeTimeLine = cacheConfiguration.obtainHomeTimeLineFromCache("hometimeline");
+        return Response.ok().entity(homeTimeLine).build();
     }
 
     @Path("hometimeline/filter/{word}")
     @GET
-    public Response filterHomeTimeLine(@PathParam(value="word") String word) throws IOException
-    {
+    public Response filterHomeTimeLine(@PathParam(value="word") String word) throws IOException, TwitterException {
         return  Response.ok().entity(appService.filterHomeTimeLine(word)).build();
     }
 
