@@ -3,6 +3,8 @@ package org.example.Services;
 import org.example.Configuration.Log;
 import org.example.Configuration.TwitterObjectBuilder;
 import org.example.Models.Tweet;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import twitter4j.Paging;
 import twitter4j.Status;
 import twitter4j.Twitter;
@@ -13,10 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class AppService {
 
-    public AppService() {
-    }
 
     public Tweet postTweet(String message) throws IOException {
         Twitter twitter = TwitterObjectBuilder.getInstance();

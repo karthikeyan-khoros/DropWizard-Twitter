@@ -2,6 +2,7 @@ package org.example.Resources;
 
 import org.example.Services.AppService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -11,15 +12,18 @@ import java.util.Map;
 
 @Path("twitter")
 @Produces(MediaType.APPLICATION_JSON)
+@Component
 public class AppController {
 
-    AppService appService = new AppService();
+
+    @Autowired
+    AppService appService;
 
     public AppController() {
     }
 
     @Autowired
-    public AppController(AppService appService) {
+    public void setAppService(AppService appService) {
         this.appService = appService;
     }
 
