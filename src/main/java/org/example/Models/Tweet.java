@@ -1,6 +1,7 @@
 package org.example.Models;
 
 import twitter4j.Status;
+import twitter4j.URLEntity;
 
 import java.util.Date;
 
@@ -9,17 +10,19 @@ public class Tweet {
     String message;
     String userName;
     String twitterHandle;
-    Date createdAt;
+    String createdAt;
     String profileImageUrl;
+    String link;
 
     public Tweet(Status status) {
 
         this.message = status.getText();
-        this.createdAt = status.getCreatedAt();
+        this.createdAt = status.getCreatedAt().toGMTString();
         this.profileImageUrl = status.getUser().getProfileImageURL();
         this.userName = status.getUser().getScreenName();
         this.twitterHandle = status.getUser().getName();
 
+        this.link = "https://twitter.com/" + status.getUser().getScreenName() + "/status/" + status.getId();
     }
 
     public String getMessage() {
@@ -46,11 +49,11 @@ public class Tweet {
         this.twitterHandle = twitterHandle;
     }
 
-    public Date getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -62,9 +65,24 @@ public class Tweet {
         this.profileImageUrl = profileImageUrl;
     }
 
-    @Override
-    public String toString()
-    {
-        return "Tweet :"+this.message+"\n"+"User Name :"+this.twitterHandle+"\nCreated At :"+this.createdAt.toString()+"\n\n";
+    public String getLink() {
+        return link;
     }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    @Override
+    public String toString() {
+        return "Tweet{" +
+                "message='" + message + '\'' +
+                ", userName='" + userName + '\'' +
+                ", twitterHandle='" + twitterHandle + '\'' +
+                ", createdAt=" + createdAt +
+                ", profileImageUrl='" + profileImageUrl + '\'' +
+                ", link='" + link + '\'' +
+                '}';
+    }
+
 }

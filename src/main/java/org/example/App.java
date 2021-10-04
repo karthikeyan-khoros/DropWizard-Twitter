@@ -21,8 +21,10 @@ public class App extends Application<AppConfiguration> {
     public void initialize(Bootstrap<AppConfiguration> bootstrap) {
 
         super.initialize(bootstrap);
-        bootstrap.addBundle(new AssetsBundle("/assets/","/"));
-
+     //   bootstrap.addBundle(new AssetsBundle("/assets/","/"));
+        bootstrap.addBundle(new AssetsBundle("/assets/html", "/twitter", "tweetrHome.html"));
+        bootstrap.addBundle(new AssetsBundle("/assets/css", "/twitter/css", null, "css"));
+        bootstrap.addBundle(new AssetsBundle("/assets/js", "/twitter/js", null, "js"));
     }
 
     @Override
