@@ -31,6 +31,7 @@ public class AppService {
             Log.getInstance().info("New Status Post :"+message);
 
             Status status = twitter.updateStatus(message);
+
             tweet = new Tweet(status);
 
             Log.getInstance().info(" Status Posted ----> [" + status.getText() + "].");
@@ -61,7 +62,6 @@ public class AppService {
 
                 Log.getInstance().info("Fetching Home TimeLine from Twitter");
                 statuses  = twitter.getHomeTimeline(paging);
-
 
                 count = statuses.size();
                 tweets = new ArrayList<Tweet>();

@@ -3,11 +3,12 @@ package org.example;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import io.dropwizard.assets.AssetsBundle;
+
 import org.example.Configuration.AppConfiguration;
 import org.example.Resources.AppController;
 import org.example.Spring.SpringConfiguration;
 import org.springframework.context.ApplicationContext;
-import io.dropwizard.assets.AssetsBundle;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class App extends Application<AppConfiguration> {
@@ -20,7 +21,7 @@ public class App extends Application<AppConfiguration> {
     public void initialize(Bootstrap<AppConfiguration> bootstrap) {
 
         super.initialize(bootstrap);
-        bootstrap.addBundle(new AssetsBundle("/assets/","/","index.html"));
+        bootstrap.addBundle(new AssetsBundle("/assets/","/"));
 
     }
 
