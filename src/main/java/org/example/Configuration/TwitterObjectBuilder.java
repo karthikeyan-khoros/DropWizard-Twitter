@@ -19,7 +19,6 @@ public class TwitterObjectBuilder {
         Map<String,Object> data  = reader.getConfiguration();
 
         ConfigurationBuilder cb = new ConfigurationBuilder();
-
         cb.setDebugEnabled(true)
                 .setOAuthConsumerKey(data.get("consumerKey").toString())
                 .setOAuthConsumerSecret(data.get("consumerSecret").toString())
@@ -27,7 +26,6 @@ public class TwitterObjectBuilder {
                 .setOAuthAccessTokenSecret(data.get("accessTokenSecret").toString());
 
         TwitterFactory tf = new TwitterFactory(cb.build());
-
         instance = tf.getInstance();
     }
 

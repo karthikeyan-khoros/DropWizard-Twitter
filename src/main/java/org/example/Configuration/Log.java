@@ -19,11 +19,9 @@ public class Log {
 
         if(logger == null) {
             File f = new File(this.fileName);
-
             if (!f.exists()) {
                 f.createNewFile();
             }
-
             fh = new FileHandler(fileName, true);
             logger = Logger.getLogger(String.valueOf(App.class));
             logger.addHandler(fh);
@@ -33,6 +31,7 @@ public class Log {
     }
 
     public static Logger getInstance() throws IOException {
+
         if(logger == null)
         {
             new Log();

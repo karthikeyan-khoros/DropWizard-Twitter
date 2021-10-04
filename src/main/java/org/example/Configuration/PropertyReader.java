@@ -10,7 +10,6 @@ public class PropertyReader {
     public Properties getPropValues() throws IOException{
 
         Properties prop = new Properties();
-
         String propFileName = "config.properties";
         inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
 
