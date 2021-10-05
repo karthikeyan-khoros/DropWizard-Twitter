@@ -22,9 +22,9 @@ public class App extends Application<AppConfiguration> {
 
         super.initialize(bootstrap);
      //   bootstrap.addBundle(new AssetsBundle("/assets/","/"));
-        bootstrap.addBundle(new AssetsBundle("/assets/html", "/twitter", "tweetrHome.html"));
-        bootstrap.addBundle(new AssetsBundle("/assets/css", "/twitter/css", null, "css"));
-        bootstrap.addBundle(new AssetsBundle("/assets/js", "/twitter/js", null, "js"));
+        bootstrap.addBundle(new AssetsBundle("/assets/html", "/twitter", "index.html"));
+        bootstrap.addBundle(new AssetsBundle("/assets/css", "/css/style", "style.css", "css"));
+        bootstrap.addBundle(new AssetsBundle("/assets/js", "/js/script", "script.js", "js"));
     }
 
     @Override
