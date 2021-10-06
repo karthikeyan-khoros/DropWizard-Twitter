@@ -18,6 +18,8 @@ public class TwitterObjectBuilder {
         ConfigurationReader reader = new ConfigurationReader();
         Map<String,Object> data  = reader.getConfiguration();
 
+        Log.getInstance().info("Creating Twitter Object ");
+
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true)
                 .setOAuthConsumerKey(data.get("consumerKey").toString())

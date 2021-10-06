@@ -1,6 +1,7 @@
 package org.example.Resources;
 
 import org.example.Configuration.CacheConfiguration;
+import org.example.Configuration.Log;
 import org.example.Models.Tweet;
 import org.example.Services.AppService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,7 @@ public class AppController {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response postTweet(Map<String,String> data) throws IOException {
+        Log.getInstance().info("Requested Post Tweet ");
         return  Response.ok().entity(appService.postTweet(data.get("tweet"))).build();
     }
 
@@ -44,6 +46,8 @@ public class AppController {
     @GET
     public Response getHomeTimeLine() throws Exception
     {
+        Log.getInstance().info("Requested Home Time Line ");
+
         List<Tweet> homeTimeLine = cacheConfiguration.obtainHomeTimeLineFromCache("hometimeline");
         return Response.ok().entity(homeTimeLine).build();
     }
@@ -51,6 +55,7 @@ public class AppController {
     @Path("hometimeline/filter/{word}")
     @GET
     public Response filterHomeTimeLine(@PathParam(value="word") String word) throws IOException, TwitterException {
+        Log.getInstance().info("Requested Filtered Home Time-Line ");
         return  Response.ok().entity(appService.filterHomeTimeLine(word)).build();
     }
 

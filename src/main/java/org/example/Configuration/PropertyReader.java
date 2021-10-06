@@ -11,6 +11,8 @@ public class PropertyReader {
 
         Properties prop = new Properties();
         String propFileName = "config.properties";
+
+        Log.getInstance().info("Reading Property File");
         inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
 
         if(inputStream!=null){

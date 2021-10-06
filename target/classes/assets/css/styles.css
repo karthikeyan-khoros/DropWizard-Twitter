@@ -1,9 +1,8 @@
+
 *
 {
     margin:0px;
     padding:0px;
-
-    /* border:1px solid hsl(210,25%,88.4%);; */
     padding:0px;
 }
 
@@ -13,6 +12,21 @@ body{
     font-size: 20px;
     font-weight: bold;
 }
+
+button{
+      width: 15rem;
+      height: 3.5em;
+      border-top-right-radius: 2em;
+      border-bottom-right-radius: 2em;
+      border-top-left-radius: 2em;
+      border-bottom-left-radius: 2em;
+      line-height: 1.3125
+      font-size: 14px;
+      font-weight: 900;
+      color: white;
+      background-color: rgb(29, 161, 242);
+      border: none;
+}
 .main
 {
     display:flex;
@@ -21,11 +35,9 @@ body{
     height:100%;
 }
 
-                                                            /* NAVIGATION AREA */
+                                /* NAVIGATION AREA */
 
 .navigation {
-
-
     height:100%;
     display:flex;
     flex-direction: column;
@@ -111,7 +123,7 @@ svg{
     width:30px;
 }
 
-                                                                            /* TWEET AREA TOP */
+                                   /* TWEET AREA TOP */
 
 .tweet-area{
     border:1px solid hsl(210,25%,88.4%);
@@ -123,6 +135,7 @@ svg{
 .tweet-top{
     display: flex;
     align-items: center;
+    justify-content:spaced-around;
     height:65px;
     border-bottom:2px solid hsl(210,25%,88.4%);
     margin-bottom: 5px;
@@ -134,6 +147,11 @@ svg{
     font-size: 22px;
 }
 
+.get{
+    margin-left: auto;
+    margin-right:20px;
+}
+
 .tweet{
     border:1px solid hsl(210,25%,88.4%);
     border-bottom:1px solid transparent;
@@ -141,6 +159,7 @@ svg{
     display:flex;
     height:150px;
 }
+
 
 
 .avatar-area
@@ -166,7 +185,7 @@ svg{
 
 .user{
     display: flex;
-
+   align-items:center;
 }
 
 .user .screen-name{
@@ -181,7 +200,16 @@ svg{
     color:  #B0B0B0;
     font-weight: 400;
     font-size:15px;
+}
 
+
+
+.date{
+    position: relative;
+    left:25px;
+    color:  #B0B0B0;
+    font-weight: 400;
+    font-size:13px;
 }
 
 .tweet .content{
@@ -194,6 +222,10 @@ svg{
     width:95%;
 }
 
+.link{
+color:black;
+text-decoration:none;
+}
 .stats{
 
     font-size:15px;
@@ -205,6 +237,7 @@ svg{
     justify-content: space-around;
     position:relative;
     top:20px;
+    margin-bottom:0px;
 }
 
 .action-item{
@@ -215,12 +248,11 @@ svg{
 
 .icon svg{
     height:20px;
-
-
 }
-                                                                                /* EXPLORE */
+                                 /* EXPLORE */
 
 .explore{
     /* border:1px solid red; */
     height:100%;
 }
+

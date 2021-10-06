@@ -31,7 +31,6 @@ public class AppService {
             Log.getInstance().info("New Status Post :"+message);
 
             Status status = twitter.updateStatus(message);
-
             tweet = new Tweet(status);
 
             Log.getInstance().info(" Status Posted ----> [" + status.getText() + "].");
@@ -52,7 +51,7 @@ public class AppService {
     public List<Tweet> getHomeTimeLine() throws IOException{
         Twitter twitter = TwitterObjectBuilder.getInstance();
 
-        int page=1,count=20;
+        int page=1,count=10;
 
         Paging paging = new Paging(page,count);
         List<Status> statuses;
@@ -79,9 +78,6 @@ public class AppService {
             Log.getInstance().warning(e.getErrorMessage());
             return null;
         }
-
-
-
         return tweets;
     }
 

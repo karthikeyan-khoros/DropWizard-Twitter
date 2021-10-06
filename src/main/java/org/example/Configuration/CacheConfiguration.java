@@ -4,6 +4,7 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.CacheStats;
 import com.google.common.cache.LoadingCache;
+import org.example.App;
 import org.example.Models.Tweet;
 import org.example.Services.AppService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +15,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-@Component
 public class CacheConfiguration {
 
     LoadingCache<String , List<Tweet>> response = null;
-
-    @Autowired
-    AppService appService;
 
     public CacheConfiguration() {
         initialise();
@@ -36,6 +33,7 @@ public class CacheConfiguration {
                     .build(new CacheLoader<String,List<Tweet>>(){
                         @Override
                         public List<Tweet> load(String key) throws IOException {
+                            Log.getInstance().info("Cache Miss");
                           return new AppService().getHomeTimeLine();
                         }
         });

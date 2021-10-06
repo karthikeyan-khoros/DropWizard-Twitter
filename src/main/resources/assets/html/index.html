@@ -2,285 +2,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-   <script type="text/javascript" src="/js/script.js"></script>
-   <link type="text/css" rel="stylesheet" href="style.css">
+   <link rel="stylesheet" href="/css/styles.css">
+   <script type="text/javascript" src="/js/scripts.js"></script>
 
-   <script>  function getHomeTimeLine()
-    {
-    console.log("Started");
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function(){
-        if(this.readyState==4 &&this.status==200)
-        {
-            var template = "<div class=\"tweet\"><div class=\"avatar-area\"> <img src=\"\" class=\"profile-pic\" alt=\"Avatar\">  </div> <div class=\"text-area\"> <div class=\"user\"> <div class=\"screen-name\"></div> <!-- Screen Name --> <div class=\"user-name\"></div>   <!-- User Name --> </div> <div class=\"content\"> <!-- Content --> </div> <div class=\"tweet-action-buttons\"> <div class=\"action-item\"> <div class=\"tweet-action-button\" > <div class=\"icon\"> <svg viewBox=\"0 0 28 28\"><g><path d=\"M14.046 2.242l-4.148-.01h-.002c-4.374 0-7.8 3.427-7.8 7.802 0 4.098 3.186 7.206 7.465 7.37v3.828c0 .108.044.286.12.403.142.225.384.347.632.347.138 0 .277-.038.402-.118.264-.168 6.473-4.14 8.088-5.506 1.902-1.61 3.04-3.97 3.043-6.312v-.017c-.006-4.367-3.43-7.787-7.8-7.788zm3.787 12.972c-1.134.96-4.862 3.405-6.772 4.643V16.67c0-.414-.335-.75-.75-.75h-.396c-3.66 0-6.318-2.476-6.318-5.886 0-3.534 2.768-6.302 6.3-6.302l4.147.01h.002c3.532 0 6.3 2.766 6.302 6.296-.003 1.91-.942 3.844-2.514 5.176z\"></path></g></svg> </div> <!--  --> </div> <div class=\"stats\"> 33 </div> </div> <div class=\"action-item\"> <div class=\"tweet-action-button\" > <div class=\"icon\"> <svg viewBox=\"0 0 28 28\"><g><path d=\"M23.77 15.67c-.292-.293-.767-.293-1.06 0l-2.22 2.22V7.65c0-2.068-1.683-3.75-3.75-3.75h-5.85c-.414 0-.75.336-.75.75s.336.75.75.75h5.85c1.24 0 2.25 1.01 2.25 2.25v10.24l-2.22-2.22c-.293-.293-.768-.293-1.06 0s-.294.768 0 1.06l3.5 3.5c.145.147.337.22.53.22s.383-.072.53-.22l3.5-3.5c.294-.292.294-.767 0-1.06zm-10.66 3.28H7.26c-1.24 0-2.25-1.01-2.25-2.25V6.46l2.22 2.22c.148.147.34.22.532.22s.384-.073.53-.22c.293-.293.293-.768 0-1.06l-3.5-3.5c-.293-.294-.768-.294-1.06 0l-3.5 3.5c-.294.292-.294.767 0 1.06s.767.293 1.06 0l2.22-2.22V16.7c0 2.068 1.683 3.75 3.75 3.75h5.85c.414 0 .75-.336.75-.75s-.337-.75-.75-.75z\"></path></g></svg> </div> <!--  --> </div> <div class=\"stats\"> 2K </div> </div> <div class=\"action-item\"> <div class=\"tweet-action-button\" > <div class=\"icon\"> <svg viewBox=\"0 0 28 28\"><g><path d=\"M12 21.638h-.014C9.403 21.59 1.95 14.856 1.95 8.478c0-3.064 2.525-5.754 5.403-5.754 2.29 0 3.83 1.58 4.646 2.73.814-1.148 2.354-2.73 4.645-2.73 2.88 0 5.404 2.69 5.404 5.755 0 6.376-7.454 13.11-10.037 13.157H12zM7.354 4.225c-2.08 0-3.903 1.988-3.903 4.255 0 5.74 7.034 11.596 8.55 11.658 1.518-.062 8.55-5.917 8.55-11.658 0-2.267-1.823-4.255-3.903-4.255-2.528 0-3.94 2.936-3.952 2.965-.23.562-1.156.562-1.387 0-.014-.03-1.425-2.965-3.954-2.965z\"></path></g></svg> </div> </div> <div class=\"stats\"> 3.3K </div> </div> <div class=\"item\"> <div class=\"tweet-action-button\" > <div class=\"icon\"> <svg viewBox=\"0 0 28 28\"><g><path d=\"M17.53 7.47l-5-5c-.293-.293-.768-.293-1.06 0l-5 5c-.294.293-.294.768 0 1.06s.767.294 1.06 0l3.72-3.72V15c0 .414.336.75.75.75s.75-.336.75-.75V4.81l3.72 3.72c.146.147.338.22.53.22s.384-.072.53-.22c.293-.293.293-.767 0-1.06z\"></path><path d=\"M19.708 21.944H4.292C3.028 21.944 2 20.916 2 19.652V14c0-.414.336-.75.75-.75s.75.336.75.75v5.652c0 .437.355.792.792.792h15.416c.437 0 .792-.355.792-.792V14c0-.414.336-.75.75-.75s.75.336.75.75v5.652c0 1.264-1.028 2.292-2.292 2.292z\"></path></g></svg> </div> <!--  --> </div> </div> </div> </div></div>";
-
-            const obj = JSON.parse(this.responseText);
-            let i=0;
-            console.log("XX")
-            console.log(obj.length)
-            console.log("XX")
-            while (i<obj.length)
-            {
-
-                var tweetArea = document.getElementsByClassName("entry")[0];
-                tweetArea.innerHTML = tweetArea.innerHTML.toString() + template;
-
-                var newTweet = tweetArea.getElementsByClassName("tweet")[i];
-
-                  newTweet.getElementsByClassName("screen-name")[0].innerText = obj[i].userName;
-
-                  newTweet.getElementsByClassName("user-name")[0].innerHTML = "@"+obj[i].twitterHandle;
-
-                  newTweet.getElementsByClassName("profile-pic")[0].setAttribute("src",obj[i].profileImageUrl);
-
-                  newTweet.getElementsByClassName("content")[0].innerHTML = obj[i].message;
-
-                i++;
-
-            }
-
-        }
-        };
-        xhttp.open("GET","http://0.0.0.0:8080/api/twitter/hometimeline",true);
-        xhttp.send();
-    }
-
-   </script>
-
-   <style>
-      *
-{
-    margin:0px;
-    padding:0px;
-
-    /* border:1px solid hsl(210,25%,88.4%);; */
-    padding:0px;
-}
-
-body{
-    height:800px;
-    font-family: "Segoe UI",Roboto,Ubuntu,"Helvetica Neue",sans-serif ;
-    font-size: 20px;
-    font-weight: bold;
-}
-.main
-{
-    display:flex;
-    flex-direction:row;
-    align-items: stretch;
-    height:100%;
-}
-
-                                                            /* NAVIGATION AREA */
-
-.navigation {
-
-
-    height:100%;
-    display:flex;
-    flex-direction: column;
-    width:350px;
-}
-
-.nav-top{
-    height:55px;
-}
-
-.nav-top img{
-    height:100%;
-    position:relative;
-    left:50px;
-}
-
-.nav-links{
-    position:relative;
-    bottom:10px;
-    display:flex;
-    width:100%;
-
-}
-
-.nav-link{
-
-    display:flex;
-    justify-content: center;
-    padding: 0 1em 0 1em;
-    border-bottom-right-radius: 2em;
-    border-bottom-left-radius: 2em;
-    border-top-right-radius: 2em;
-    border-top-left-radius: 2em;
-    height:80%;
-    width:50%;
-
-}
-
-.nav-link:hover
-{
-    background-color: #e8f5fe;
-}
-
-.nav-link a{
-    display: flex;
-    align-items:center;
-    position:relative;
-    width:100%;
-    text-decoration: none;
-}
-
-.option{
-    position: relative;
-    left:10px;
-    color:black;
-}
-
-.active{
-    color: #41b0f3;
-}
-ul,li
-{
-    flex-grow:1;
-}
-
-li{
-    height:50px;
-    width:100%;
-    display:flex;
-    align-items: center;
-    justify-content: start;
-    margin:5px 0px 5px 0px;
-    position:relative;
-    left:60px;
-
-
-}
-
-svg{
-    position:relative;
-    top:3px;
-    height:30px;
-    width:30px;
-}
-
-                                                                            /* TWEET AREA TOP */
-
-.tweet-area{
-    border:1px solid hsl(210,25%,88.4%);
-    height:auto;
-    width:600px;
-    padding-bottom:5px;
-}
-
-.tweet-top{
-    display: flex;
-    align-items: center;
-    height:65px;
-    border-bottom:2px solid hsl(210,25%,88.4%);
-    margin-bottom: 5px;
-}
-
-.tweet-top-text{
-    position:relative ;
-    left:20px;
-    font-size: 22px;
-}
-
-.tweet{
-    border:1px solid hsl(210,25%,88.4%);
-    border-bottom:1px solid transparent;
-
-    display:flex;
-    height:150px;
-}
-
-
-.avatar-area
-{
-    width:15%;
-    height:auto;
-    display:flex;
-    justify-content: center;
-}
-
-.avatar-area img{
-    height:50px;
-    position: relative;
-    top:7px;
-    border-radius: 50%;
-}
-
-.text-area{
-    position: relative;
-    top:5px;
-    width:85%
-    height:auto;
-}
-
-.user{
-    display: flex;
-
-}
-
-.user .screen-name{
-    font-size:15px;
-    position: relative;
-    left:10px;
-}
-
-.user .user-name{
-    position: relative;
-    left:20px;
-    color:  #B0B0B0;
-    font-weight: 400;
-    font-size:15px;
-
-}
-
-.tweet .content{
-
-    font-size: 18px;
-    font-weight: normal;
-    position: relative;
-    left:10px;
-    top:5px;
-    width:95%;
-}
-
-.stats{
-
-    font-size:15px;
-    font-weight: normal;
-}
-
-.tweet-action-buttons{
-    display: flex;
-    justify-content: space-around;
-    position:relative;
-    top:20px;
-}
-
-.action-item{
-    display:flex;
-    align-items: center;
-
-}
-
-.icon svg{
-    height:20px;
-
-
-}
-                                                                                /* EXPLORE */
-
-.explore{
-    /* border:1px solid red; */
-    height:100%;
-}
-
-
-
-   </style>
 
 </head>
+
 <body>
 
 <div class="main">
@@ -297,7 +24,7 @@ svg{
             <li>
                <div class="nav-link ">
                   <a href="#">
-                     <svg viewBox=""><g><path d="M22.58 7.35L12.475 1.897c-.297-.16-.654-.16-.95 0L1.425 7.35c-.486.264-.667.87-.405 1.356.18.335.525.525.88.525.16 0 .324-.038.475-.12l.734-.396 1.59 11.25c.216 1.214 1.31 2.062 2.66 2.062h9.282c1.35 0 2.444-.848 2.662-2.088l1.588-11.225.737.398c.485.263 1.092.082 1.354-.404.263-.486.08-1.093-.404-1.355zM12 15.435c-1.795 0-3.25-1.455-3.25-3.25s1.455-3.25 3.25-3.25 3.25 1.455 3.25 3.25-1.455 3.25-3.25 3.25z"></path></g></svg>
+                     <svg class=""><g><path d="M22.58 7.35L12.475 1.897c-.297-.16-.654-.16-.95 0L1.425 7.35c-.486.264-.667.87-.405 1.356.18.335.525.525.88.525.16 0 .324-.038.475-.12l.734-.396 1.59 11.25c.216 1.214 1.31 2.062 2.66 2.062h9.282c1.35 0 2.444-.848 2.662-2.088l1.588-11.225.737.398c.485.263 1.092.082 1.354-.404.263-.486.08-1.093-.404-1.355zM12 15.435c-1.795 0-3.25-1.455-3.25-3.25s1.455-3.25 3.25-3.25 3.25 1.455 3.25 3.25-1.455 3.25-3.25 3.25z"></path></g></svg>
                      <span class="option active">Home</span>
                   </a>
                </div>
@@ -368,10 +95,10 @@ svg{
    <div class="tweet-area">
       <div class="tweet-top">
          <div class="tweet-top-text">Home</div>
-         <button  onclick="getHomeTimeLine()">Click-Me</button>
+         <div class="get"><button   onclick="getHomeTimeLine()">Click-Me</button></div>
       </div>
       <div class="entry"></div>
-
+      </div>
    <div class="explore">
 
    </div>

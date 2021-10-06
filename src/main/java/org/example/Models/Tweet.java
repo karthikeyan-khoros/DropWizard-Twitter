@@ -14,6 +14,9 @@ public class Tweet {
     String profileImageUrl;
     String link;
 
+    public Tweet() {
+    }
+
     public Tweet(Status status) {
 
         this.message = status.getText();
