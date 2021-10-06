@@ -7,8 +7,6 @@ import com.google.common.cache.LoadingCache;
 import org.example.App;
 import org.example.Models.Tweet;
 import org.example.Services.AppService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 
 import java.io.IOException;
