@@ -1,4 +1,4 @@
-consumerKey: "zn0d5nixLkByFXYMAeCKelZOf"
-consumerSecret: "UHboyu2M6hozoT8UQxOTLznidV4IVGjw1LyQBEB8tEp7U2IlSx"
-accessToken: "1346061684985630720-uSh9ermFESWzxYYpjxWrE2iesS1BRj"
-accessTokenSecret: "0gh8VRZM9W9t3KWxF2ow56JZm1XtRXhRSg2sFMPC8ONxS"
+consumerKey: <ConsumerKey>
+consumerSecret: <ConsumerSecret>
+accessToken: <ConsumerSecret>
+accessTokenSecret: <AccessTokenSecret>
