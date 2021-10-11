@@ -4,6 +4,7 @@ import org.example.Configuration.CacheConfiguration;
 import org.example.Configuration.Log;
 import org.example.Configuration.TwitterObjectBuilder;
 import org.example.Models.Tweet;
+import org.slf4j.Logger;
 import org.springframework.stereotype.Component;
 import twitter4j.Paging;
 import twitter4j.Status;
@@ -20,7 +21,17 @@ public class AppService {
 
     CacheConfiguration cacheConfiguration = new CacheConfiguration();
 
-    public  static  String key = "hometimeline";
+    Logger logger;
+
+    {
+        try {
+            logger = Log.getInstance();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public  static final String key = "hometimeline";
 
     public Tweet postTweet(String message) throws IOException {
 
@@ -28,7 +39,7 @@ public class AppService {
         Tweet tweet;
 
         try {
-            Log.getInstance().info("New Status Post :"+message);
+            logger.info("New Status Post :"+message);
 
             Status status = twitter.updateStatus(message);
             tweet = new Tweet(status);
@@ -38,7 +49,7 @@ public class AppService {
 
         catch (TwitterException e)
         {
-            Log.getInstance().warning(e.getErrorMessage());
+            logger.warn(e.getErrorMessage());
             return null;
         }
 
@@ -51,31 +62,33 @@ public class AppService {
     public List<Tweet> getHomeTimeLine() throws IOException{
         Twitter twitter = TwitterObjectBuilder.getInstance();
 
-        int page=1,count=10;
+        final int page=1,pageCount=10;
+        int count,index =0;
 
-        Paging paging = new Paging(page,count);
+        Paging paging = new Paging(page,pageCount);
         List<Status> statuses;
         List<Tweet> tweets = null;
 
         try {
 
-                Log.getInstance().info("Fetching Home TimeLine from Twitter");
+                logger.info("Fetching Home TimeLine from Twitter");
                 statuses  = twitter.getHomeTimeline(paging);
 
                 count = statuses.size();
+
                 tweets = new ArrayList<Tweet>();
 
                 while(count > 0)
                 {
                     count--;
-                    tweets.add(new Tweet(statuses.get(count)));
+                    tweets.add(new Tweet(statuses.get(index++)));
                 }
 
         }
 
         catch(TwitterException e)
         {
-            Log.getInstance().warning(e.getErrorMessage());
+           logger.warn(e.getErrorMessage());
             return null;
         }
         return tweets;
@@ -83,20 +96,14 @@ public class AppService {
 
     public List<Tweet> filterHomeTimeLine(String word) throws IOException, TwitterException {
 
-        int page=1,count=5;
-        Paging paging = new Paging(page,count);
-
         List<Tweet> tweets = null;
 
         try {
-            Log.getInstance().info("Filtered Homeline Fetched ");
+            logger.info("Filtered HomeTimeline Fetched ");
             tweets = cacheConfiguration.obtainHomeTimeLineFromCache(key);
         }
-        catch(TwitterException e)
-        {
-            Log.getInstance().info(e.getErrorMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
+       catch (Exception e) {
+            logger.info(e.getMessage());
         }
 
         tweets = tweets.parallelStream()
